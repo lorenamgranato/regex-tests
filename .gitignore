@@ -1,2 +1,9 @@
 # Virtual environment
 env
+
+# Caches
+__pycache__
+.pytest_cache
+
+# VSCode
+.vscode
