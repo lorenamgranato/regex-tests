@@ -36,3 +36,22 @@ def test_compile_regexes():
         assert False
     else:
         assert True
+
+
+@pytest.mark.dependency(depends=["test_json_format"])
+def test_unescaped_char():
+    data = read_json()
+
+    unescaped = []
+    for key, value in data.items():
+        unicode_list = [ord(i) for i in value]
+        if min(unicode_list) < 32:
+            unescaped.append((key, value))
+
+    if unescaped:
+        print("Some regexes have unescaped characters:")
+        for item in unescaped:
+            print(item)
+        assert False
+    else:
+        assert True

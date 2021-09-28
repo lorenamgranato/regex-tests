@@ -1,4 +1,4 @@
 {
-    "messi": "\b((lionel messi)|(messi))\b",
-    "neymar": "\b(neymar)|(neymar jr)\b"
+    "messi": "\\b((lionel messi)|(messi))\\b",
+    "neymar": "\\b(neymar)|(neymar jr)\\b"
 }
