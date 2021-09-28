@@ -55,3 +55,22 @@ def test_unescaped_char():
         assert False
     else:
         assert True
+
+
+@pytest.mark.dependency(depends=["test_json_format", "test_compile_regexes"])
+def test_unclassifiable_text():
+    data = read_json()
+
+    classified = []
+    for key, value in data.items():
+        matched = re.search(value, "XR1oZdp6s RHBALLoQfZc")
+        if matched:
+            classified.append((key, value))
+
+    if classified:
+        print("Some regexes classified an unclassifiable text ('XR1oZdp6s RHBALLoQfZc'):")
+        for item in classified:
+            print(item)
+        assert False
+    else:
+        assert True
