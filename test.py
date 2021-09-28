@@ -1,4 +1,5 @@
 import json
+import re
 
 
 def read_json():
@@ -13,3 +14,22 @@ def test_json_format():
         print("Json not properly formatted.")
         print(error)
         assert False
+
+
+def test_compile_regexes():
+    data = read_json()
+
+    bad_regexes = []
+    for key, value in data.items():
+        try:
+            re.compile(value)
+        except Exception as error:
+            bad_regexes.append((key, value, error))
+
+    if bad_regexes:
+        print("Some regexes weren't able to be compiled:")
+        for item in bad_regexes:
+            print(item)
+        assert False
+    else:
+        assert True
