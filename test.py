@@ -1,4 +1,5 @@
 import json
+import pytest
 import re
 
 
@@ -7,6 +8,7 @@ def read_json():
         return json.load(json_file)
 
 
+@pytest.mark.dependency()
 def test_json_format():
     try:
         read_json()
@@ -16,6 +18,7 @@ def test_json_format():
         assert False
 
 
+@pytest.mark.dependency(depends=["test_json_format"])
 def test_compile_regexes():
     data = read_json()
 
